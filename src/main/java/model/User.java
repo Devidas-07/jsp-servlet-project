@@ -1,11 +1,18 @@
 package model;
 
 public class User {
+	private int uId;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
 	
+	public int getuId() {
+		return uId;
+	}
+	public void setuId(int uId) {
+		this.uId = uId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
