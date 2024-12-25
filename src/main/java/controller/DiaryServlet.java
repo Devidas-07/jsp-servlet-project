@@ -47,7 +47,7 @@ public class DiaryServlet extends HttpServlet {
 		UserDao d = new UserDao();
 		try {
 		d.createEvent(uid, content);
-		request.getRequestDispatcher("WEB-INF/entries.jsp").forward(request, response);
+		request.getRequestDispatcher("/entries.jsp").forward(request, response);
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());

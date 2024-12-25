@@ -1,3 +1,4 @@
+
 package controller;
 
 import jakarta.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import model.User;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import dao.UserDao;
 
@@ -19,15 +21,6 @@ public class UserLogin extends HttpServlet {
 
 	public UserLogin() {
 		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -44,12 +37,14 @@ public class UserLogin extends HttpServlet {
 				User user = userDao.getUserByEmailId(email);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				request.getRequestDispatcher("WEB-INF/writeDiary.jsp").forward(request, response);
+				request.getRequestDispatcher("/writeDiary.jsp").forward(request, response);
 
-			}
-			else {
-				 request.setAttribute("errorMessage", "Invalid email or password");
-			        request.getRequestDispatcher("login.jsp").forward(request, response);
+			} else {
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				out.print("email id and password did't match!!!");
+				RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+				rd.include(request, response);
 			}
 		} catch (Exception e) {
 			System.out.println("in UserLogin Servlet");

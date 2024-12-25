@@ -2,6 +2,7 @@ package dao;
 
 import model.Entries;
 import model.User;
+import util.DbUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -127,20 +128,20 @@ public class UserDao {
 	public List<Entries> getEntriesByUser(int uid) throws ClassNotFoundException{
 		List<Entries> entries = new ArrayList<Entries>();
 
-		String query = "Select * from entries where user_id = ?";
+		String queryForEntries = "Select * from entries where user_id = ?";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/onlinediarywithservlet?allowPublicKeyRetrieval=true&useSSL=false", "root",
 				"PFH#23kgrw9");) {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			PreparedStatement preparedStatement = connection.prepareStatement(queryForEntries);
 			preparedStatement.setInt(1, uid);
 			ResultSet r = preparedStatement.executeQuery();
 			while (r.next()) {
                 Entries entry = new Entries();
                 entry.setUserId(r.getInt("user_id"));
-                entry.setDate(r.getTimestamp("date").toLocalDateTime());  // Convert SQL timestamp to LocalDateTime
-                entry.setEntries(r.getString("entries"));
+                entry.setDate(r.getTimestamp("entry_date").toLocalDateTime());  // Convert SQL timestamp to LocalDateTime
+                entry.setEntries(r.getString("content"));
 
                 entries.add(entry);
             }
@@ -156,5 +157,33 @@ public class UserDao {
 		}
 		return entries;
 
+	}
+	public ArrayList<Entries> searchEntry(int uid, String searchEntry){
+		
+		ArrayList<Entries> list = new ArrayList<Entries>();
+		
+		Connection con= DbUtil.getConnection();
+		String searchQuery = "select * from entries where user_id=? and content like ?; ";
+		try {
+		PreparedStatement stm= con.prepareStatement(searchQuery);
+		stm.setInt(1, uid);
+		stm.setString(2, searchEntry +"%");
+		
+		ResultSet r= stm.executeQuery();
+		
+		while(r.next()) {
+			Entries e = new Entries();
+			e.setDate(r.getTimestamp(2).toLocalDateTime());
+			e.setEntries(r.getString(3));
+			list.add(e);
+		}
+		System.out.println("in search entry to view past records");
+		
+		}
+		catch(Exception e) {
+			System.out.println("in search entry: "+e.getMessage());
+		}
+		
+		return list;
 	}
 }
