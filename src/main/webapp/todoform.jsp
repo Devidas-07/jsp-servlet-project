@@ -1,94 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<title>User Management Application</title>
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-
-</head>
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="https://www.javaguides.net" class="navbar-brand"> Todo
-					App</a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Todos</a></li>
-			</ul>
-
-			<ul class="navbar-nav navbar-collapse justify-content-end">
-				<li><a href="<%=request.getContextPath()%>/logout"
-					class="nav-link">Logout</a></li>
-			</ul>
-		</nav>
-	</header>
-	<div class="container col-md-5">
-		<div class="card">
-			<div class="card-body">
-				<c:if test="${todo != null}">
-					<form action="update" method="post">
-				</c:if>
-				<c:if test="${todo == null}">
-					<form action="insert" method="post">
-				</c:if>
-
-				<caption>
-					<h2>
-						<c:if test="${todo != null}">
-            			Edit Todo
-            		</c:if>
-						<c:if test="${todo == null}">
-            			Add New Todo
-            		</c:if>
-					</h2>
-				</caption>
-
-				<c:if test="${todo != null}">
-					<input type="hidden" name="id" value="<c:out value='${todo.id}' />" />
-				</c:if>
-
-				<fieldset class="form-group">
-					<label>Todo Title</label> <input type="text"
-						value="<c:out value='${todo.title}' />" class="form-control"
-						name="title" required="required" minlength="5">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Todo Decription</label> <input type="text"
-						value="<c:out value='${todo.description}' />" class="form-control"
-						name="description" minlength="5">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Todo Status</label> <select class="form-control"
-						name="isDone">
-						<option value="false">In Progress</option>
-						<option value="true">Complete</option>
-					</select>
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Todo Target Date</label> <input type="date"
-						value="<c:out value='${todo.targetDate}' />" class="form-control"
-						name="targetDate" required="required">
-				</fieldset>
-
-				<button type="submit" class="btn btn-success">Save</button>
-				</form>
-			</div>
-		</div>
-	</div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">Online Diary</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.jsp">Add Journal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="todoform.jsp">Add To Do List</a>
+        </li>
+       
+      </ul>
+    </div>
+  </div>
+</nav>
+<form action="AddToDo" method="post">
+<div class="container text-center mt-5" >
+  <div class="mb-3">
+    <label  class="form-label">Task</label>
+    <input type="text"  name="task">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <input type="text" name="description" >
+  </div>
+  <div class="mb-3 form-check">
+    <label >Date</label>
+    <input type="date" name="date">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
 
 </body>
 </html>

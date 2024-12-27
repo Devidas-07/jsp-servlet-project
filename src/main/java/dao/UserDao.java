@@ -178,6 +178,9 @@ public class UserDao {
 			list.add(e);
 		}
 		System.out.println("in search entry to view past records");
+		for(Entries e: list) {
+			System.out.println(e.getEntries());
+		}
 		
 		}
 		catch(Exception e) {

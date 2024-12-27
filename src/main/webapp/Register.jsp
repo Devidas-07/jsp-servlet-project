@@ -26,27 +26,27 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container mt-5">
+	<div class="container mt-5 text-center">
 		<h2 class="text-center">Register</h2>
 		<div class="">
 			<form action="RegisterServlet" method="post" class="mt-4">
 				<div class="mb-3">
 					<label for="name" class="form-label">First Name:</label> <input
-						type="text" name="firstName" id="name" class="form-control"
+						type="text" name="firstName" id="name" 
 						required>
 				</div>
 				<div class="mb-3">
 					<label for="name" class="form-label">Last Name:</label> <input
-						type="text" name="lastName" id="name" class="form-control"
+						type="text" name="lastName" id="name" 
 						required>
 				</div>
 				<div class="mb-3">
 					<label for="email" class="form-label">Email:</label> <input
-						type="email" name="email" id="email" class="form-control" required>
+						type="email" name="email" id="email"  required>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password:</label> <input
-						type="password" name="password" id="password" class="form-control"
+						type="password" name="password" id="password" 
 						required>
 				</div>
 				<button type="submit" class="btn btn-success">Register</button>

@@ -7,7 +7,7 @@ public class ToDo {
 	private int tid;
 	private String name;
 	private String discription;
-	private LocalDate targetDate;
+	private Date targetDate;
 	private boolean status;
 	private int userId;
 	
@@ -29,13 +29,13 @@ public class ToDo {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-	public LocalDate getTargetDate() {
+	public Date getTargetDate() {
 		return targetDate;
 	}
-	public void setTargetDate(LocalDate targetDate) {
+	public void setTargetDate(Date targetDate) {
 		this.targetDate = targetDate;
 	}
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 	public void setStatus(boolean status) {

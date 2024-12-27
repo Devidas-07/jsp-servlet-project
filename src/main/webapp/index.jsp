@@ -22,7 +22,7 @@
           <a class="nav-link" href="login.jsp">Add Journal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.jsp">Add To Do List</a>
+          <a class="nav-link" href="todoform.jsp">Add To Do List</a>
         </li>
        
       </ul>

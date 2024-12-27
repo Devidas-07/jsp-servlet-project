@@ -22,7 +22,7 @@ public class UserLogin extends HttpServlet {
 	public UserLogin() {
 		super();
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

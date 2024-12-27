@@ -38,8 +38,11 @@ public class SearchEntry extends HttpServlet {
 		int uid = u.getuId();
 		UserDao u1 = new UserDao();
 		ArrayList<Entries> elist = u1.searchEntry(uid, searchEntry);
-		request.setAttribute("entries", elist);
-
+		for(Entries e: elist) {
+			System.out.println("in search entry servlet");
+			System.out.println(e.getEntries());
+		}
+//		request.setAttribute("entries", elist);
 //		request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
 	}
 
