@@ -12,27 +12,42 @@ import model.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import dao.UserDao;
 
+/**
+ * Servlet implementation class SearchEntry
+ */
 @WebServlet("/SearchEntry")
 public class SearchEntry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SearchEntry() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public SearchEntry() {
-		super();
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	
-	@Override
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(request, response);
+		doGet(request, response);
+		
 		String searchEntry = request.getParameter("search");
 		System.out.println("search box query: " + searchEntry);
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false); 
 		User u = (User) session.getAttribute("user");
 
 		int uid = u.getuId();
@@ -42,8 +57,10 @@ public class SearchEntry extends HttpServlet {
 			System.out.println("in search entry servlet");
 			System.out.println(e.getEntries());
 		}
-//		request.setAttribute("entries", elist);
-//		request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
+		request.setAttribute("elist", elist);
+		
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("/searchResult.jsp");
+	        dispatcher.forward(request, response);
 	}
 
 }
