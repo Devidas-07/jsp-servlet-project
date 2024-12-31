@@ -3,8 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
 
 import model.ToDo;
 import util.DbUtil;
@@ -24,9 +29,6 @@ public class ToDoListDao {
 			ps.setString(3, date);
 			ps.setInt(4, uid);
 			
-				
-			
-			
 			int resultOfQuery =ps.executeUpdate();
 			System.out.println(resultOfQuery+ "in todolistdao");
 			
@@ -36,5 +38,28 @@ public class ToDoListDao {
 		}
 		
 		return "to added";
+	}
+	public List<ToDo> getAllToDo(int uid) throws SQLException{
+		List<ToDo> list = new ArrayList<ToDo>();
+		
+		String query ="SELECT * FROM TODOLIST WHERE user_id=?;";
+		Connection con = DbUtil.getConnection();
+		PreparedStatement ps= con.prepareStatement(query);
+		ps.setInt(1, uid);
+		ResultSet r = ps.executeQuery();
+		
+		while(r.next()) {
+			ToDo todo = new ToDo();
+			todo.setTid(r.getInt(1));
+			todo.setName(r.getString(2));
+			todo.setDiscription(r.getString(3));
+			todo.setTargetDate(r.getDate(4));
+			todo.setStatus(r.getBoolean(5));
+			todo.setUserId(r.getInt(6));
+			
+			list.add(todo);
+			
+		}
+		return list;
 	}
 }

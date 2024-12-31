@@ -1,3 +1,6 @@
+<%@page import="model.ToDo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="dao.ToDoListDao"%>
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,6 +12,7 @@
 		return;
 	}
 	ToDoListDao tododao = new ToDoListDao();
+	List<ToDo> list =tododao.getAllToDo(user.getuId());
 	
 %>
 <!DOCTYPE html>
@@ -31,21 +35,27 @@
 			</tr>
 		</thead>
 		<tbody>
+		<% 
+		if(!list.isEmpty()){
+			for(int i=0; i<list.size(); i++){
+				ToDo t = list.get(i);
+		%>
 			<tr>
-				<th scope="row">1</th>
-				<td>Mark</td>
+				<td ><%= t.getName() %></td>
+				<td ><%=t.getDiscription() %></td>
+				<td ><%= t.getTargetDate()%></td>
+				<td ><%= t.getStatus()%></td>
 				
 			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Jacob</td>
-				
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td colspan="2">Larry the Bird</td>
-				
-			</tr>
+			
+		<%
+			}
+		}else {
+		%>
+		<p>no todo availiable</p>
+		<%
+		}
+		%>
 		</tbody>
 	</table>
 </body>

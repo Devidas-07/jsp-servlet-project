@@ -27,6 +27,9 @@
        <li class="nav-item">
           <a class="nav-link" href="entries.jsp">Get Journal</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="todolist.jsp">Get ToDo List</a>
+        </li>
       </ul>
     </div>
   </div>
