@@ -41,12 +41,14 @@ public class DiaryServlet extends HttpServlet {
 	   
 	    	int uid = user.getuId();
 	    	String content =request.getParameter("content");
+	    	String date = request.getParameter("entryDate");
+	    	System.out.println("date of journel is "+date);
 	    
 		System.out.println("content is : "+content);
 		
 		UserDao d = new UserDao();
 		try {
-		d.createEvent(uid, content);
+		d.createEvent(uid,date, content);
 		request.getRequestDispatcher("/entries.jsp").forward(request, response);
 		}
 		catch(Exception ex) {

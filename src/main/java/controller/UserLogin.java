@@ -13,6 +13,7 @@ import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import dao.ToDoListDao;
 import dao.UserDao;
 
 @WebServlet("/UserLogin")
@@ -37,7 +38,9 @@ public class UserLogin extends HttpServlet {
 				User user = userDao.getUserByEmailId(email);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				request.getRequestDispatcher("/writeDiary.jsp").forward(request, response);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/writeDiary.jsp");
+				rd.forward(request, response);
 
 			} else {
 				response.setContentType("text/html");

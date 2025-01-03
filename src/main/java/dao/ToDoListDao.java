@@ -62,4 +62,36 @@ public class ToDoListDao {
 		}
 		return list;
 	}
+	public int countOfPendingTask(int uid) throws SQLException{
+		String query = "select count(*) from todolist where user_id=? AND status=0 ;";
+		int count=0;
+		
+		Connection con = DbUtil.getConnection();
+		PreparedStatement ps=  con.prepareStatement(query);
+		ps.setInt(1, uid);
+		ResultSet r =ps.executeQuery();
+		if(r.next()) {
+			count = r.getInt(1);
+		}
+		else {
+			System.out.println("no rows found");
+		}
+		return count;
+		
+	}
+	public boolean updateToDo(int tid, int uid) throws SQLException{
+		Connection con = DbUtil.getConnection();
+		String query = "update todolist set status= 1 where tid=? AND user_id=?;";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, tid);
+		ps.setInt(2, uid);
+		
+		int result =ps.executeUpdate();
+		if(result>0) {
+		return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

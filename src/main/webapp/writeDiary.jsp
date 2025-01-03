@@ -1,4 +1,17 @@
+<%@page import="model.User"%>
+<%@page import="jakarta.servlet.http.HttpSession"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page import="dao.ToDoListDao" %>
+<%
+	User user =(User) session.getAttribute("user");
+	int count= 0;
+	if(user!=null){
+		ToDoListDao t = new ToDoListDao();
+		count = t.countOfPendingTask(user.getuId());
+	}
+%>
+
 <html lang="en">
 <head><title>Your Diary Entry</title>
 <link rel="stylesheet"
@@ -43,10 +56,20 @@
     <br>
     <br>
     <input class="btn btn-primary" type="submit" value="Save Entry"/>
+    
 </form>
+
+
 </div>
 <script>
-// JavaScript to dynamically resize the textarea based on content.
+
+	const count = parseInt('<%=count%>');
+	if(count>0){
+	alert(`you have ${count} pending task!`);
+	}
+	
+
+
 const textarea = document.querySelector('textarea');
 textarea.addEventListener('input', function() {
   this.style.height = 'auto';

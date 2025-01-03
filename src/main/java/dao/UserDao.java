@@ -78,16 +78,17 @@ public class UserDao {
 		return isloginSuccessful;
 	}
 
-	public int createEvent(int id, String entry) throws ClassNotFoundException {
+	public int createEvent(int id, String date, String entry) throws ClassNotFoundException {
 		int status = 0;
-		String insertQuery = "INSERT INTO entries (user_id,content) VALUES(?,?);";
+		String insertQuery = "INSERT INTO entries (user_id,entry_date, content) VALUES(?,?,?);";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/onlinediarywithservlet?allowPublicKeyRetrieval=true&useSSL=false", "root",
 				"PFH#23kgrw9");) {
 			PreparedStatement p = connection.prepareCall(insertQuery);
 			p.setInt(1, id);
-			p.setString(2, entry);
+			p.setString(2, date);
+			p.setString(3, entry);
 			status = p.executeUpdate();
 			System.out.println("status of query is: " + status);
 		} catch (Exception e) {

@@ -5,14 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Results</title>
+    <link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Search Results</h1>
-    <table border="1">
-        <thead>
+<div class="container-fluid text-center">
+    <h1 class="text-center">Search Results</h1>
+    <table class="table ">
+        <thead class="table-primary">
             <tr>
-                <th>Date & Time</th>
-                <th>Entry</th>
+                <th scope="col">Date & Time</th>
+                <th scope="row">Entry</th>
             </tr>
         </thead>
         <tbody>
@@ -24,5 +27,6 @@
             </c:forEach>
         </tbody>
     </table>
+    </div>
 </body>
 </html>

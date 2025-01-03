@@ -51,7 +51,7 @@ public class UserRegister extends HttpServlet {
 		try {
 			int result = userDao.registerUser(user);
 			System.out.println(result+" resutl of inset query");
-			request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
