@@ -38,9 +38,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="writeDiary.jsp">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+        
    
       </ul>
       <form class="d-flex" action="SearchEntry" method="post">
@@ -76,7 +74,7 @@
         </div>
 
         <div class="container">
-        	<a class="btn btn-primary" href="/writerDiary.jsp">Add More entries</a>
+        	<a class="btn btn-primary" href="writeDiary.jsp">Add More entries</a>
         </div>
     </div>
 </body>

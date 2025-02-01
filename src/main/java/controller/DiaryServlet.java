@@ -11,6 +11,7 @@ import model.Entries;
 import model.User;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import dao.UserDao;
 
@@ -45,10 +46,11 @@ public class DiaryServlet extends HttpServlet {
 	    	System.out.println("date of journel is "+date);
 	    
 		System.out.println("content is : "+content);
-		
+		PrintWriter pw = response.getWriter();
 		UserDao d = new UserDao();
 		try {
 		d.createEvent(uid,date, content);
+		
 		request.getRequestDispatcher("/entries.jsp").forward(request, response);
 		}
 		catch(Exception ex) {

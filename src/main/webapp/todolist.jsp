@@ -45,7 +45,7 @@
 				<td ><%=t.getDiscription() %></td>
 				<td ><%= t.getTargetDate()%></td>
 				<td ><%= t.getStatus()%></td>
-				<td><a class="btn btn-secondary" onclick="updateToDo(<%= t.getTid() %>)" href="">Update</a></td>
+				<td><a class="btn btn-secondary" onclick="updateToDo(<%= t.getTid() %>)" href="">Mark as a Completed</a></td>
 				
 			</tr>
 			
